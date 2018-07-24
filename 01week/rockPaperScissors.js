@@ -15,10 +15,12 @@ function rockPaperScissors(hand1, hand2) {
  // just find the winning outcomes for hand2 all else would return Hand1 the winner.
 if (hand1 === hand2) {
   return "It's a tie!";
-} else if (hand1 === "rock" && hand2 === "paper" || hand1 === "scissors" && hand2 === "rock" || hand1 === 'paper' && hand2 === "scissors") {
+} else if (hand1 === "rock" && hand2 === 'paper' || hand1 === 'scissors' && hand2 === "rock" || hand1 === 'paper' && hand2 === "scissors") {
   return "Hand Two Wins";
-}else {
+}else if(hand1 === "paper" && hand2 === 'rock' || hand1 === 'rock' && hand2 === 'scissors' ||hand1 === 'scissors' && hand2 === 'paper'){
   return "Hand One Wins";
+}else {
+  return "invalid answer"
 }
 
  console.log(hand1, hand2, 'in my function')
