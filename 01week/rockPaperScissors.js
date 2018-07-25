@@ -19,6 +19,7 @@ if (hand1 === hand2) {
   return "Hand Two Wins";
 }else if(hand1 === "paper" && hand2 === 'rock' || hand1 === 'rock' && hand2 === 'scissors' ||hand1 === 'scissors' && hand2 === 'paper'){
   return "Hand One Wins";
+  //then I decided to add and invaild feature.
 }else {
   return "invalid answer"
 }
