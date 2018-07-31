@@ -39,7 +39,9 @@ function getPrompt() {
 // Tests
 
 if (typeof describe === 'function') {
-
+// I basically want to simplify the code.  So I want to place all outcomes
+// that make a tie in one line. Ill use the or symbol ||.
+// And that is how I would rewrite that code.
   describe('#rockPaperScissors()', () => {
     it('should detect a tie', () => {
       assert.equal(rockPaperScissors('rock', 'rock' ||'paper', 'paper' || 'scissors', 'scissors'), "It's a tie!");
