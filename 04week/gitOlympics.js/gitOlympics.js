@@ -17,6 +17,5 @@ const printListOfOlympians = (Olympians)=>{
   olympians.forEach((item)=>{
     console.log(item);
   })
-  
 }
 printListOfOlympians(olympians);
