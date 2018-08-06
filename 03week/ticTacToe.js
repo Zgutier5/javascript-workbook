@@ -25,14 +25,17 @@ function printBoard() {
 
 function horizontalWin() {
   // Your code here
-}
+  const checkone = board == board[0][0] && 
+};
 
 function verticalWin() {
   // Your code here
+
 }
 
 function diagonalWin() {
   // Your code here
+
 }
 
 function checkForWin() {
