@@ -24,17 +24,21 @@ function printStacks() {
 //the array seems to be inside an object.
 // I would need a function that will take a value from one aray
 // and place them the other arrays with in stacks
+
 const movePiece= (startStack, endStack)=> {
   // Your code here
   // I am creating a variable with the user input values
-  const startTemp = stacks[startStack]
-  const endTemp = stacks[endStack];
+
+  const startMove = stacks[startStack]
+  const endMove = stacks[endStack];
+
   //Add a function that take user input with legal move rules
   //all together shoud take one value from an array an move it
   // to another array with out the vaule being greater than the last value
-  if (isLegal(startTemp[startTemp.length-1], endTemp[endTemp.length-1])){
-    const value = startTemp.pop()
-    return endTemp.push(value);
+
+  if (isLegal(startMove[startMove.length-1], endMove[endMove.length-1])){
+    const value = startMove.pop()
+    return endMove.push(value);
   } else {
     return 'invalid move'
   }
@@ -47,13 +51,13 @@ const movePiece= (startStack, endStack)=> {
 }
 //islegal function should make rules that if the value taken from
 // one array can not be placed on another value that is greater
-const isLegal = (startTemp, endTemp) =>{
+const isLegal = (startMove, endMove) =>{
   // Your code here
-  console.log(startTemp, endTemp)
-  if (endTemp===undefined || startTemp <= endTemp){
+  console.log(startMove, endMove)
+  if (endMove === undefined || startMove <= endMove) {
     console.log(true)
     return true
-  }else{
+  } else {
     console.log(false)
     return false;
   }
@@ -62,7 +66,7 @@ const isLegal = (startTemp, endTemp) =>{
 // in each object and detect winner
 function checkForWin() {
   // Your code here
-  if(stacks['b'].length === 4 || stacks['c'].length === 4) {
+  if(stacks['b'].length === [4, 3, 2, 1] || stacks['c'].length === [4, 3, 2, 1]) {
     return 'You have won Towers of Hanoi!'
   }
 }
