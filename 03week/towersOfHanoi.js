@@ -19,12 +19,19 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
+//I think the logic on the functions would be better with 
+//a const function. So I need to capture the value in the array
+//the array seems to be inside an object.
+// I would need a function that will take a value from one aray
+// and place them the other arrays with in stacks
 const movePiece= (startStack, endStack)=> {
   // Your code here
-
+  // I am creating a variable with the user input values
   const startTemp = stacks[startStack]
   const endTemp = stacks[endStack];
-
+  //Add a function that take user input with legal move rules
+  //all together shoud take one value from an array an move it
+  // to another array with out the vaule being greater than the last value
   if (isLegal(startTemp[startTemp.length-1], endTemp[endTemp.length-1])){
     const value = startTemp.pop()
     return endTemp.push(value);
@@ -38,7 +45,8 @@ const movePiece= (startStack, endStack)=> {
 
 
 }
-
+//islegal function should make rules that if the value taken from
+// one array can not be placed on another value that is greater
 const isLegal = (startTemp, endTemp) =>{
   // Your code here
   console.log(startTemp, endTemp)
@@ -50,7 +58,8 @@ const isLegal = (startTemp, endTemp) =>{
     return false;
   }
 }
-
+//checkforwin should to be able to take the length of the array
+// in each object and detect winner
 function checkForWin() {
   // Your code here
   if(stacks['b'].length === 4 || stacks['c'].length === 4) {
@@ -58,10 +67,13 @@ function checkForWin() {
   }
 }
 
+//should combine all previous functions and complete program 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
     if (movePiece(startStack, endStack)){
-      if(checkForWin(startStack, endStack))
+      if(checkForWin(startStack, endStack)){
+        return 'You have won Towers of Hanoi!'
+      }
     }
   
 }
