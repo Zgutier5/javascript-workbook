@@ -39,8 +39,8 @@ const movePiece= (startStack, endStack)=> {
   // to another array with out the vaule being greater than the last value
 
   if (isLegal(startMove[startMove.length-1], endMove[endMove.length-1])){
-    const value = startMove.pop()
-    return endMove.push(value);
+    const result = startMove.pop()
+    return endMove.push(result);
   } else {
     return 'invalid move'
   }
@@ -127,7 +127,7 @@ if (typeof describe === 'function') {
   //This test should test how towers works with all functions together
   describe('#towersOfHanoi()', () => {
     it('should checkforwin and islegal', () => {
-      
+
       stacks = {
         a: [],
         b: [],
