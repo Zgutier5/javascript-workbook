@@ -113,6 +113,7 @@ if (typeof describe === 'function') {
   //towersOfHanoi function:
   //First the moviePiece function should move the last value in array
 
+
   describe('#movePice()', () => {
     it('should move last value of array to users stack', () => {
       stacks = {
@@ -124,17 +125,16 @@ if (typeof describe === 'function') {
   });
 
   //This test should test how towers works with all functions together
-
   describe('#towersOfHanoi()', () => {
-    it('should only allow the movePiece function with the checkforwin function', () => {
+    it('should checkforwin and islegal', () => {
+      
       stacks = {
-        'You have won Towers of Hanoi'
         a: [],
         b: [],
         c: [4, 3, 2, 1]
-      });
+      };
     });
-  })
+  });
 
   describe('#isLegal()', () => {
     it('should not allow an illegal move', () => {
