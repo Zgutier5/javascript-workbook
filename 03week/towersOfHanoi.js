@@ -7,7 +7,9 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-let stacks = {
+//This will be the array we need to access to move piece by piece.
+
+const stacks = {
   a: [4, 3, 2, 1],
   b: [],
   c: []
@@ -51,36 +53,40 @@ const movePiece= (startStack, endStack)=> {
 }
 //islegal function should make rules that if the value taken from
 // one array can not be placed on another value that is greater
+
 const isLegal = (startMove, endMove) =>{
-  // Your code here
+
   console.log(startMove, endMove)
   if (endMove === undefined || startMove <= endMove) {
     console.log(true)
-    return true
+    return true;
   } else {
-    console.log(false)
     return false;
   }
 }
 //checkforwin should to be able to take the length of the array
 // in each object and detect winner
-function checkForWin() {
-  // Your code here
-  if(stacks['b'].length === [4, 3, 2, 1] || stacks['c'].length === [4, 3, 2, 1]) {
-    return 'You have won Towers of Hanoi!'
+const checkForWin = ()=> {
+
+  if(stacks.b.length === 4 || stacks.c.length === 4) {
+    return true
+  } else {
+    return false
   }
 }
 
 //should combine all previous functions and complete program 
-function towersOfHanoi(startStack, endStack) {
-  // Your code here
+const towersOfHanoi= (startStack, endStack)=> {
+  
     if (movePiece(startStack, endStack)){
       if(checkForWin(startStack, endStack)){
-        return 'You have won Towers of Hanoi!'
-      }
-    }
-  
-}
+        console.log('You have won Towers of Hanoi!')
+        return true
+      } else {
+        return false
+      };
+    };
+  }
 
 function getPrompt() {
   printStacks();
@@ -102,6 +108,33 @@ if (typeof describe === 'function') {
       assert.deepEqual(stacks, { a: [4, 3, 2], b: [1], c: [] });
     });
   });
+
+  //I will make 2 test that describe the moviePiece function and the new
+  //towersOfHanoi function:
+  //First the moviePiece function should move the last value in array
+
+  describe('#movePice()', () => {
+    it('should move last value of array to users stack', () => {
+      stacks = {
+        a: [4, 3, 2,],
+        b: [1],
+        c: []
+      };
+    });
+  });
+
+  //This test should test how towers works with all functions together
+
+  describe('#towersOfHanoi()', () => {
+    it('should only allow the movePiece function with the checkforwin function', () => {
+      stacks = {
+        'You have won Towers of Hanoi'
+        a: [],
+        b: [],
+        c: [4, 3, 2, 1]
+      });
+    });
+  })
 
   describe('#isLegal()', () => {
     it('should not allow an illegal move', () => {
