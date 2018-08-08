@@ -15,6 +15,9 @@ const stacks = {
   c: []
 };
 
+
+
+
 function printStacks() {
   console.log("a: " + stacks.a);
   console.log("b: " + stacks.b);
@@ -42,7 +45,8 @@ const movePiece= (startStack, endStack)=> {
     const result = startMove.pop()
     return endMove.push(result);
   } else {
-    return 'invalid move'
+    console.log('invalid')
+    return false
   }
   
   
@@ -77,7 +81,7 @@ const checkForWin = ()=> {
 
 //should combine all previous functions and complete program 
 const towersOfHanoi= (startStack, endStack)=> {
-  
+ 
     if (movePiece(startStack, endStack)){
       if(checkForWin(startStack, endStack)){
         console.log('You have won Towers of Hanoi!')
