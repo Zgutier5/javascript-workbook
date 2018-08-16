@@ -11,7 +11,33 @@ let jobTypes = {
 
 // Your code here
 
+class CrewMember {
+  constructor(name, job, skill, ship){
+    this.name = name;
+    this.job = job;
+    this.skill = skill;
+    this.ship = null;
+  }
+  asignToShip=(ship)=>{
+    ship.crew.push(this)
+    this.ship = ship
+  }
+}
+
+
+class Ship {
+  constructor(name, type, ability, crew){
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+}
 //tests
+//build a class called CrewMember, in constructor name, job, special skip, this.ship is null
+// build class called Ship, in construtor Name: type: Ability; Crew: []
+// ship is going to have missioin statment method 
+// crewmember will have can enter ship method
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
     it('should have a name, a job, a specialSkill and ship upon instantiation', function(){
@@ -22,6 +48,7 @@ if (typeof describe === 'function'){
       assert.equal(crewMember1.ship, null);
     });
 
+    //
     it('can enter a ship', function(){
       let mav = new Ship('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
       let crewMember1 = new CrewMember('Rick Martinez', 'pilot', 'chemistry');
