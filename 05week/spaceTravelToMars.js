@@ -23,6 +23,8 @@ class CrewMember {
     this.ship = ship
   }
 }
+const crewMember1 = new CrewMember ('Rick Martinez', 'pilot', 'chemistry')
+const crewMember2 = new CrewMember ('Commander Louis', 'Main Ship', 'Interplanetary Space Travel')
 
 
 class Ship {
@@ -33,6 +35,10 @@ class Ship {
     this.crew = [];
   }
 }
+
+const mav = new Ship ('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit')
+const hermes = new Ship ('Hermes', 'Main Ship', 'Interplanetary Space Travel')
+
 //tests
 //build a class called CrewMember, in constructor name, job, special skip, this.ship is null
 // build class called Ship, in construtor Name: type: Ability; Crew: []
