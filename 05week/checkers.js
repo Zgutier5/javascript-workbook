@@ -7,7 +7,8 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
+//The function Checkers sould hold an input of the checkers peice.
+//The function I think would work  better as a class
 class Checker {
   constructor(color){
     if (color === 'white'){
@@ -17,6 +18,8 @@ class Checker {
     }
   }
 }
+
+//The class board should be able to holdm the checkers class and the grid
 
 class Board {
   constructor() {
@@ -61,7 +64,7 @@ class Board {
   }
 
   // Your code here
-
+  // Here Should take positions of white pieces, setinng as arrays
   createCheckers(){
     // [row, column]
     const whitePosition = [
@@ -78,16 +81,15 @@ class Board {
       [2, 5],
       [2, 7]
     ]
+    //the loop should set W on board
     for (let i = 0; i < 12; i++) {
       let whiteRow = whitePosition[i][0];
       let whiteColumn = whitePosition[i][1];
       let whiteChecker = new Checker('white');
-      // console.log(whiteRow);
-      this.checkers.push(whiteChecker);
-      // console.log(this.grid[whiteRow][whiteColumn]);
+      this.checkers.push(whiteChecker); 
       this.grid[whiteRow][whiteColumn] = whiteChecker;
     }
-
+      // this will target the black pieces on board
     const blackPosition = [
       [5, 0],
       [5, 2],
@@ -102,20 +104,19 @@ class Board {
       [7, 4],
       [7, 6]
     ]
+    // the loop will set B pieces on the board
     for (let i = 0; i < 12; i++) {
       let blackRow = blackPosition[i][0];
       let blackColumn = blackPosition[i][1];
       let blackChecker = new Checker('black');
-      // console.log(whiteRow);
       this.checkers.push(blackChecker);
-      // console.log(this.grid[whiteRow][whiteColumn]);
       this.grid[blackRow][blackColumn] = blackChecker;
     }
   }
 }
   
 
-
+//the class Game will hold the move piece function and create the rules foe moving on the board
 class Game {
   constructor() {
     this.board = new Board;
@@ -127,8 +128,7 @@ class Game {
   moveChecker(source, destination){
     if (isLegalInput(source,destination) &&
       isLegalMove (source, destination)) {
-      
-
+        //this will read the position and destination 
       const sourceRow = parseInt(source.charAt(0));
       const sourceColumn = parseInt(source.charAt(1));
       const destinationRow = parseInt(destination.charAt(0));
@@ -136,6 +136,7 @@ class Game {
       this.board.grid[destinationRow][destinationColumn] = 
       this.board.grid[sourceRow][sourceColumn];
       this.board.grid[sourceRow][sourceColumn] = null;
+      //should hold the rule for jumping a piece on the board
       if (Math.abs(destinationRow - sourceRow) === 2) {
         let jumpedRow = destinationRow - sourceRow > 0 ?
           sourceRow + 1 : destinationRow + 1;
@@ -151,7 +152,7 @@ class Game {
     }
   }
 }
-
+  //should only allow move if the destination is empty and between row and columm 0-8
   const isLegalInput = (source, destination) => {
       const sourceRow = parseInt(source.charAt(0));
       const sourceColumn = parseInt(source.charAt(1));
@@ -163,7 +164,7 @@ class Game {
            (destinationColumn >= 0 && destinationColumn < 8);
       return (sourceGood && destinationGood);
   }
-
+  //should only allow move if the piece being jumped is 2 columns over and empty destination 
   const isLegalMove = (source, destination) => {
     const sourceRow = parseInt(source.charAt(0));
     const sourceColumn = parseInt(source.charAt(1));
