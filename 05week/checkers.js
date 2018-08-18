@@ -8,12 +8,19 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
-  // Your code here
+class Checker {
+  constructor(color){
+    if (color === 'white'){
+      this.symbol = 'W'
+    }else{
+      this.symbol = 'B'
+    }
+  }
 }
 
 class Board {
   constructor() {
+    this.checkers = [];
     this.grid = []
   }
   // method that creates an 8x8 array, filled with null values
@@ -27,6 +34,7 @@ class Board {
       }
     }
   }
+  
   viewGrid() {
     // add our column numbers
     let string = "  0 1 2 3 4 5 6 7\n";
@@ -53,7 +61,60 @@ class Board {
   }
 
   // Your code here
+
+  createCheckers(){
+    // [row, column]
+    const whitePosition = [
+      [0, 1],
+      [0, 3],
+      [0, 5],
+      [0, 7],
+      [1, 0],
+      [1, 2],
+      [1, 4],
+      [1, 6],
+      [2, 1],
+      [2, 3],
+      [2, 5],
+      [2, 7]
+    ]
+    for (let i = 0; i < 12; i++) {
+      let whiteRow = whitePosition[i][0];
+      let whiteColumn = whitePosition[i][1];
+      let whiteChecker = new Checker('white');
+      // console.log(whiteRow);
+      this.checkers.push(whiteChecker);
+      // console.log(this.grid[whiteRow][whiteColumn]);
+      this.grid[whiteRow][whiteColumn] = whiteChecker;
+    }
+
+    const blackPosition = [
+      [5, 0],
+      [5, 2],
+      [5, 4],
+      [5, 6],
+      [6, 1],
+      [6, 3],
+      [6, 5],
+      [6, 7],
+      [7, 0],
+      [7, 2],
+      [7, 4],
+      [7, 6]
+    ]
+    for (let i = 0; i < 12; i++) {
+      let blackRow = blackPosition[i][0];
+      let blackColumn = blackPosition[i][1];
+      let blackChecker = new Checker('black');
+      // console.log(whiteRow);
+      this.checkers.push(blackChecker);
+      // console.log(this.grid[whiteRow][whiteColumn]);
+      this.grid[blackRow][blackColumn] = blackChecker;
+    }
+  }
 }
+  
+
 
 class Game {
   constructor() {
@@ -61,8 +122,61 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.createCheckers();
+  }
+  moveChecker(source, destination){
+    if (isLegalInput(source,destination) &&
+      isLegalMove (source, destination)) {
+      
+
+      const sourceRow = parseInt(source.charAt(0));
+      const sourceColumn = parseInt(source.charAt(1));
+      const destinationRow = parseInt(destination.charAt(0));
+      const destinationColumn = parseInt(destination.charAt(1));
+      this.board.grid[destinationRow][destinationColumn] = 
+      this.board.grid[sourceRow][sourceColumn];
+      this.board.grid[sourceRow][sourceColumn] = null;
+      if (Math.abs(destinationRow - sourceRow) === 2) {
+        let jumpedRow = destinationRow - sourceRow > 0 ?
+          sourceRow + 1 : destinationRow + 1;
+        let jumpedColumn = destinationColumn - 
+          sourceColumn > 0 ? sourceColumn + 1 :
+          destinationColumn + 1;
+        this.board.grid[jumpedRow][jumpedColumn] = null;
+        this.board.checkers.pop();
+      }
+  
+    } else {
+      console.log("invalid")
+    }
   }
 }
+
+  const isLegalInput = (source, destination) => {
+      const sourceRow = parseInt(source.charAt(0));
+      const sourceColumn = parseInt(source.charAt(1));
+      const destinationRow = parseInt(destination.charAt(0));
+      const destinationColumn = parseInt(destination.charAt(1));
+      let sourceGood = (sourceRow >= 0 && sourceRow < 8) &&
+          (sourceColumn >= 0 && sourceColumn < 8);
+      let destinationGood = (destinationRow >= 0 && destinationRow , 8) &&
+           (destinationColumn >= 0 && destinationColumn < 8);
+      return (sourceGood && destinationGood);
+  }
+
+  const isLegalMove = (source, destination) => {
+    const sourceRow = parseInt(source.charAt(0));
+    const sourceColumn = parseInt(source.charAt(1));
+    const destinationRow = parseInt(destination.charAt(0));
+    const destinationColumn = parseInt(destination.charAt(1));
+    let goodRowMove = (Math.abs(destinationRow - sourceRow) <= 2);
+    let goodColumnMove = (Math.abs(destinationColumn - sourceColumn) ===1);
+    return (goodRowMove && goodColumnMove);
+  }
+
+
+
+
 
 function getPrompt() {
   game.board.viewGrid();
@@ -76,6 +190,7 @@ function getPrompt() {
 
 const game = new Game();
 game.start();
+
 
 
 // Tests
