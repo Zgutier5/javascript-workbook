@@ -40,19 +40,32 @@ function getPrompt() {
 
 if (typeof describe === 'function') {
 // I basically want to simplify the code.  So I want to place all outcomes
-// that make a tie in one line. Ill use the or symbol ||.
-// And that is how I would rewrite that code.
-  describe('#rockPaperScissors()', () => {
-    it('should detect a tie', () => {
-      assert.equal(rockPaperScissors('rock', 'rock' ||'paper', 'paper' || 'scissors', 'scissors'), "It's a tie!");
-    });
-    it('should detect which hand won', () => {
-      assert.equal(rockPaperScissors('rock', 'paper' || 'paper', 'scissors' || 'rock', 'scissors'), "Hand two wins!");
-    });
-    it('should scrub input to ensure lowercase with "trim"ed whitepace', () => {
-      assert.equal(rockPaperScissors('rOcK', ' paper ' || 'Paper', 'SCISSORS' || 'rock ', 'sCiSsOrs'), "Hand two wins!");
-    });
+
+describe('#rockPaperScissors()', () => {
+  it('should detect a tie', () => {
+      assert.equal(rockPaperScissors('rock', 'rock'), "Tie!");            
+      assert.equal(rockPaperScissors('paper', 'paper'), "Tie!");            
+      assert.equal(rockPaperScissors('scissors', 'scissors'), "Tie!");    });
+  it('should detect which hand won', () => {
+    assert.equal(rockPaperScissors('rock', 'paper'), "Hand two wins!");
+    assert.equal(rockPaperScissors('rock', 'scissors'), "Hand one wins!");
+    assert.equal(rockPaperScissors('paper', 'scissors'), "Hand two wins!");
+    assert.equal(rockPaperScissors('paper', 'rock'), "Hand one wins!");
+    assert.equal(rockPaperScissors('scissors', 'paper'), "Hand one wins!");
+    assert.equal(rockPaperScissors('scissors', 'rock'), "Hand two wins!");
   });
+  it('ensures all variations of the input work as expected', () => {
+    assert.equal(rockPaperScissors('rocK', ' paper '), "Hand two wins!");
+    assert.equal(rockPaperScissors('paper', 'scissors'), "Hand two wins!");
+    assert.equal(rockPaperScissors('rock ', 'scissors'), "Hand one wins!");
+  });
+  it('should detect if the inputs are valid', () => {
+      assert.equal(rockPaperScissors('7', 'HELLO'), "invaild");
+      assert.equal(rockPaperScissors('dljfsdk', 'paper'), "invaild");
+      assert.equal(rockPaperScissors('*', 8986), "invaild");
+      assert.equal(rockPaperScissors([dklsjf], "Bonjour"), "invaild");
+    });
+});
 } else {
 
   getPrompt();
