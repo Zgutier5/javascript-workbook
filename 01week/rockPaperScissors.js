@@ -9,8 +9,21 @@ const rl = readline.createInterface({
 
 
 function rockPaperScissors(hand1, hand2) {
-
   // Write code here
+  //So I took some time and reviewed that project promt. I just couldnt seem to
+  // undetstand why there was so many equations. So I thougt it would be easier to
+  // just find the winning outcomes for hand2 all else would return Hand1 the winner.
+  if (hand1 === hand2) {
+    return "It's a tie!";
+  } else if (hand1 === "rock" && hand2 === 'paper' || hand1 === 'scissors' && hand2 === "rock" || hand1 === 'paper' && hand2 === "scissors") {
+    return "Hand Two Wins";
+  }else if(hand1 === "paper" && hand2 === 'rock' || hand1 === 'rock' && hand2 === 'scissors' ||hand1 === 'scissors' && hand2 === 'paper'){
+    return "Hand One Wins";
+  //then I decided to add and invaild feature.
+  }else {
+    return "invalid answer"
+  }
+
 
 }
 
