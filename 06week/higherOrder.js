@@ -4,22 +4,79 @@ const assert = require('assert');
 
 function forEach(arr, callback) {
   // Your code here
+  const loopThrough = (arr, callback) => {
+    for (let i=0; i<arr.length; i++) {
+      console.log(arr[i]);
+  
+      if (callback) {
+        console.log("callback present");
+  
+        callback(arr[i]);
+      }
+    }
+  }
 }
 
 function map(arr, callback) {
   // Your code here
+  const arr1 = [];
+  for (let i=0; i<arr.length; i++) {
+    console.log(arr[i]);
+    if(callback) {
+      console.log('callback present')
+      arr1.push(callback(arr[i]));
+    }
+
+    }
+    return arr1
+
 }
 
 function filter(arr, callback) {
   // Your code here
+  const arr1 = [];
+  for (let i=0; i<arr.length; i++) {
+    console.log(arr[i]);
+    if(callback) {
+      const callbackreturn = callback(arr[i]);
+      console.log('callback present')
+      if(callbackreturn){
+        arr1.push(callback(arr[i]));
+      }
+    }
+  }
+    return arr1
+
 }
 
 function some(arr, callback) {
   // Your code here
+  const arr1 = [];
+  for (let i=0; i<arr.length; i++) {
+    console.log(arr[i]);
+    if(callback) {
+      const callbackreturn = callback(arr[i]);
+      console.log('callback present')
+      if(callbackreturn){
+        arr1.push(callback(arr[i]));
+      }
+    }
+  }
 }
 
 function every(arr, callback) {
   // Your code here
+  const arr1 = [];
+  for (let i=0; i<arr.length; i++) {
+    console.log(arr[i]);
+    if(callback) {
+      const callbackreturn = callback(arr[i]);
+      console.log('callback present')
+      if(callbackreturn){
+        arr1.push(callback(arr[i]));
+      }
+    }
+  }
 }
 
 if (typeof describe === 'function') {
